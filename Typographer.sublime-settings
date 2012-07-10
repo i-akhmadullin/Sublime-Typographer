@@ -1,0 +1,9 @@
+{
+    // Accepted values: html xml no mixed
+    "entity_type": "html",
+    // Accepted values: 0 1
+    "add_br_tags": 0,
+    // Accepted values: true false
+    "wrap_in_paragraph": false,
+    "maximum_nobr": 3
+}

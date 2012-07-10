@@ -1,0 +1,88 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Sublime-Typographer",
+                        "children":
+                        [
+                            {
+                                "caption": "Settings – Default",
+                                "command": "open_file",
+                                "args":
+                                {
+                                    "file": "${packages}/Sublime-Typographer/Typographer.sublime-settings"
+                                }
+                            },
+                            {
+                                "caption": "Settings – User",
+                                "command": "open_file",
+                                "args":
+                                {
+                                    "file": "${packages}/User/Typographer.sublime-settings"
+                                }
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                        "file": "${packages}/Sublime-Typographer/Default (OSX).sublime-keymap",
+                                        "platform": "OSX"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                        "file": "${packages}/Sublime-Typographer/Default (Linux).sublime-keymap",
+                                        "platform": "Linux"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                        "file": "${packages}/Sublime-Typographer/Default (Windows).sublime-keymap",
+                                        "platform": "Windows"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                        "file": "${packages}/User/Default (OSX).sublime-keymap",
+                                        "platform": "OSX"
+                                },
+                                "caption": "Key Bindings – User"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                        "file": "${packages}/User/Default (Linux).sublime-keymap",
+                                        "platform": "Linux"
+                                },
+                                "caption": "Key Bindings – User"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                        "file": "${packages}/User/Default (Windows).sublime-keymap",
+                                        "platform": "Windows"
+                                },
+                                "caption": "Key Bindings – User"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
