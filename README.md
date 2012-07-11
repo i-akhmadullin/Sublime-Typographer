@@ -9,7 +9,7 @@
 2. Скачиваем туда последнюю версию [Sublime-Typographer для Sublime Text 2](https://github.com/i-akhmadullin/Sublime-Typographer):
 
   ```
-  git clone git://github.com/i-akhmadullin/Sublime-CSSComb.git CSScomb
+  git clone git://github.com/i-akhmadullin/Sublime-Typographer.git Sublime-Typographer
   ```
 
   После этого должен появиться пункт `Sublime-Typographer` в контекстном меню
