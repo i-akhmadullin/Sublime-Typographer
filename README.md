@@ -5,11 +5,9 @@
 
 ## Установка
 
-1. В Sublime Text 2 открываем: `Preferences` → `Browse Packages...` Откроется папка `../Sublime Text 2/Packages`.
+1. Package Control: Add Repository - `https://github.com/i-akhmadullin/Sublime-Typographer`
 
-2. Package Control: Add Repository - `https://github.com/i-akhmadullin/Sublime-Typographer`
-
-3. Package Control: Install Package - `Sublime-Typographer`
+2. Package Control: Install Package - `Sublime-Typographer`
 
 ## Использование
 
