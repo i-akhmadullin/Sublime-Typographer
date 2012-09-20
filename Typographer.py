@@ -8,6 +8,8 @@ class BaseTypographer(sublime_plugin.TextCommand):
 
     def __init__(self, view):
         self.view = view
+
+    def run(self, edit):
         self.settings = sublime.load_settings("Typographer.sublime-settings")
         # if not self.settings.has('entity_type'):
         #     self.settings.set('entity_type', 'html')
@@ -19,8 +21,6 @@ class BaseTypographer(sublime_plugin.TextCommand):
         #     self.settings.set('maximum_nobr', 3)
 
         # sublime.save_settings('Typographer.sublime-settings')
-
-    def run(self, edit):
 
         selections = self.get_selections()
         TypographerCall = Typograph
@@ -38,7 +38,6 @@ class BaseTypographer(sublime_plugin.TextCommand):
             threads.append(thread)
             thread.start()
 
-        selections.clear()
         self.handle_threads(edit, threads, selections, offset=0, i=0)
 
     def get_selections(self):
