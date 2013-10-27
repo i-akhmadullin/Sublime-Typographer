@@ -1,4 +1,4 @@
-# -*- encoding: windows-1251 -*-
+# -*- encoding: utf-8 -*-
 
 """
 	remotetypograf.py
@@ -20,7 +20,7 @@
 		from RemoteTypograf import RemoteTypograf
 	        rt = RemoteTypograf()
 		# rt = RemoteTypograf('windows-1251')
-		print rt.processText ('"Вы все еще кое-как верстаете в "Ворде"? - Тогда мы идем к вам!"');
+		print rt.processText ('"..."');
 """
 
 
@@ -78,6 +78,7 @@ class RemoteTypograf:
 
 	def processText(self, text):
 
+		text = text.decode('utf-8')
 		text = text.replace('&', '&amp;')
 		text = text.replace('<', '&lt;')
 		text = text.replace ('>', '&gt;')
@@ -103,13 +104,13 @@ class RemoteTypograf:
 		SOAPRequest += 'SOAPAction: "http://typograf.artlebedev.ru/webservices/ProcessText"\n\n'
 
 		SOAPRequest += SOAPBody
-
+		SOAPRequest = SOAPRequest.encode('utf-8')
 
 		remoteTypograf = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		remoteTypograf.connect((host, 80))
 		remoteTypograf.sendall(SOAPRequest)
 
-		typografResponse = ''
+		typografResponse = b''
 		while 1:
 			buf = remoteTypograf.recv(8192)
 			if len(buf)==0: break
@@ -117,16 +118,14 @@ class RemoteTypograf:
 
 		remoteTypograf.close()
 
-		
+		typografResponse = typografResponse.decode('utf-8')
 		startsAt = typografResponse.find('<ProcessTextResult>') + 19
 		endsAt = typografResponse.find('</ProcessTextResult>')
 		typografResponse = typografResponse[startsAt:endsAt]
 
-
 		typografResponse = typografResponse.replace('&amp;', '&' )
 		typografResponse = typografResponse.replace('&lt;', '<')
 		typografResponse = typografResponse.replace ('&gt;', '>')
-		
 
 		return  typografResponse
 

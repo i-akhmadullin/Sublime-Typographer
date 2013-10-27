@@ -1,4 +1,4 @@
-# Sublime-Typographer для Sublime Text 2
+# Sublime-Typographer для Sublime Text 3
 
 Плагин прогоняет выделенный текст или весь текст файла через [Типографа](http://www.artlebedev.ru/tools/typograf/).
 
@@ -11,7 +11,6 @@
 
 ## Использование
 
-Поддерживается множественное выделение.  
 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>t</kbd>   
 либо `Typograph selected text/file` в контекстном меню.
 

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import threading
-# import urllib
-import urllib2
+import urllib
+# import urllib2
 
-from RemoteTypograf import RemoteTypograf
+from .RemoteTypograf import RemoteTypograf
 
 
 class Typograph(threading.Thread):
@@ -46,12 +46,14 @@ class Typograph(threading.Thread):
     def run(self):
         try:
             self.result = self.exec_request()
-        except (OSError) as (e):
+        except (OSError):
             self.error = True
             self.result = 'Some OSError'
-        except (urllib2.HTTPError) as (e):
+        except (urllib.error.HTTPError):  # as (e):
+        # except (urllib2.HTTPError):  # as (e):
             self.error = True
-            self.result = 'HTTP error %s contacting API' % (str(e.code))
-        except (urllib2.URLError) as (e):
+            self.result = 'HTTP error %s contacting API'  # % (str(e.code))
+        except (urllib.error.URLError):  # as (e):
+        # except (urllib2.URLError):  # as (e):
             self.error = True
-            self.result = 'Error: ' + str(e.reason)
+            self.result = 'Error: '  # + str(e.reason)

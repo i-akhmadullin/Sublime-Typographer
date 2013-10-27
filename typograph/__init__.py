@@ -1,1 +1,1 @@
-from typograph import Typograph
+from .typograph import Typograph

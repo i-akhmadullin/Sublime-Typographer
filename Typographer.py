@@ -1,6 +1,13 @@
+import sys
 import sublime
 import sublime_plugin
-from typograph import Typograph
+is_python3 = sys.version_info[0] > 2
+
+if is_python3:
+    from .typograph.typograph import Typograph
+    from .Edit import Edit as Edit
+else:
+    from typograph import Typograph
 
 
 class BaseTypographer(sublime_plugin.TextCommand):
@@ -11,25 +18,15 @@ class BaseTypographer(sublime_plugin.TextCommand):
 
     def run(self, edit):
         self.settings = sublime.load_settings("Typographer.sublime-settings")
-        # if not self.settings.has('entity_type'):
-        #     self.settings.set('entity_type', 'html')
-        # if not self.settings.has('add_br_tags'):
-        #     self.settings.set('add_br_tags', 1)
-        # if not self.settings.has('wrap_in_paragraph'):
-        #     self.settings.set('wrap_in_paragraph', 'true')
-        # if not self.settings.has('maximum_nobr'):
-        #     self.settings.set('maximum_nobr', 3)
-
         # sublime.save_settings('Typographer.sublime-settings')
 
         selections = self.get_selections()
-        TypographerCall = Typograph
 
         threads = []
         for sel in selections:
             selbody = self.view.substr(sel)
             selbody = selbody.encode('utf-8')
-            thread = TypographerCall(sel, selbody,
+            thread = Typograph(sel, selbody,
                 self.settings.get('entity_type'),
                 self.settings.get('add_br_tags'),
                 self.settings.get('wrap_in_paragraph'),
@@ -94,9 +91,7 @@ class TypographText(BaseTypographer):
         result = super(TypographText, self).handle_result(edit, thread, selections, offset)
 
         sel = thread.sel
-        result = unicode(thread.result, 'utf-8')
-        # result = thread.result
-        # if offset:
-            # sel = sublime.Region(thread.sel.begin() + offset, thread.sel.end() + offset)
+        result = thread.result
 
-        self.view.replace(edit, sel, result)
+        with Edit(self.view) as edit:
+            edit.replace(sel, result);
