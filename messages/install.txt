@@ -1,4 +1,4 @@
-Вы успешно поставили плагин Sublime-Typographer для Sublime Text 2.
+Вы успешно поставили Sublime-Typographer для Sublime Text 3.
 
 
 

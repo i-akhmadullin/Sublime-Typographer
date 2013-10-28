@@ -21,7 +21,7 @@ class Typograph(threading.Thread):
         threading.Thread.__init__(self)
 
     def exec_request(self):
-        rt = RemoteTypograf()  # UTF-8
+        rt = RemoteTypograf('windows-1251')  # UTF-8
 
         entity_type = self.entity_type
         if entity_type == "html":
@@ -37,7 +37,7 @@ class Typograph(threading.Thread):
         rt.p(self.wrap_in_paragraph)
         rt.nobr(self.maximum_nobr)
 
-        processed_text = rt.processText(self.original).strip(' \n\r')
+        processed_text = rt.processText(str(self.original, 'utf-8')).strip(' \n\r')
         if len(processed_text) > 0:
             return processed_text
         else:

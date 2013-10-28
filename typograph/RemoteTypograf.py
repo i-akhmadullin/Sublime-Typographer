@@ -32,9 +32,9 @@ class RemoteTypograf:
 	_useBr = 1
 	_useP = 1
 	_maxNobr = 3
-	_encoding = 'UTF-8'
+	_encoding = 'utf-8'
 
-	def __init__(self, encoding='UTF-8'):
+	def __init__(self, encoding='utf-8'):
 		self._encoding = encoding
 
 
@@ -78,7 +78,6 @@ class RemoteTypograf:
 
 	def processText(self, text):
 
-		text = text.decode('utf-8')
 		text = text.replace('&', '&amp;')
 		text = text.replace('<', '&lt;')
 		text = text.replace ('>', '&gt;')
@@ -104,7 +103,7 @@ class RemoteTypograf:
 		SOAPRequest += 'SOAPAction: "http://typograf.artlebedev.ru/webservices/ProcessText"\n\n'
 
 		SOAPRequest += SOAPBody
-		SOAPRequest = SOAPRequest.encode('utf-8')
+		SOAPRequest = SOAPRequest.encode(self._encoding)
 
 		remoteTypograf = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		remoteTypograf.connect((host, 80))
@@ -118,7 +117,7 @@ class RemoteTypograf:
 
 		remoteTypograf.close()
 
-		typografResponse = typografResponse.decode('utf-8')
+		typografResponse = str(typografResponse, self._encoding)
 		startsAt = typografResponse.find('<ProcessTextResult>') + 19
 		endsAt = typografResponse.find('</ProcessTextResult>')
 		typografResponse = typografResponse[startsAt:endsAt]
